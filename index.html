@@ -105,15 +105,12 @@
     </div>
 
     <script>
-        // 絵文字のUnicode範囲を定義
+        // 絵文字のUnicode範囲を定義（互換性の高い範囲のみ）
         const emojiRanges = [
-            [0x1F600, 0x1F64F], // Emoticons
-            [0x1F300, 0x1F5FF], // Miscellaneous Symbols and Pictographs
-            [0x1F680, 0x1F6FF], // Transport and Map Symbols
-            [0x1F900, 0x1F9FF], // Supplemental Symbols and Pictographs
-            [0x2600, 0x26FF],   // Miscellaneous Symbols
-            [0x2700, 0x27BF],   // Dingbats
-            [0x1F1E0, 0x1F1FF], // Regional Indicator Symbols (flags)
+            [0x1F600, 0x1F64F], // Emoticons（顔文字）
+            [0x1F300, 0x1F3FF], // 自然、天気、動物など
+            [0x1F400, 0x1F4FF], // 動物、ハート、オブジェクトなど
+            [0x1F680, 0x1F6C0], // 乗り物と交通記号
         ];
 
         // Unicode順に絵文字を生成
