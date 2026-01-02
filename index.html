@@ -13,7 +13,7 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: white;
+            background: #F9F9F9;
             min-height: 100vh;
             padding: 20px;
         }
@@ -34,9 +34,15 @@
         .emoji-grid {
             display: grid;
             grid-template-columns: repeat(5, 40px);
-            gap: 40px;
+            gap: 32px;
             padding: 40px;
             justify-content: center;
+            background-color: #F9F9F9;
+            background-image:
+                linear-gradient(to right, #E0E6E7 1px, transparent 1px),
+                linear-gradient(to bottom, #E0E6E7 1px, transparent 1px);
+            background-size: 72px 72px;
+            background-position: 39px 39px;
         }
 
         @media (min-width: 600px) {
