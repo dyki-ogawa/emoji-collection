@@ -37,14 +37,6 @@
             gap: 32px;
             padding: 40px;
             justify-content: center;
-            position: relative;
-        }
-
-        .grid-cross {
-            position: absolute;
-            width: 12px;
-            height: 12px;
-            pointer-events: none;
         }
 
         @media (min-width: 600px) {
@@ -180,85 +172,6 @@
             });
         }
 
-        // グリッドの十字アイコンを描画
-        function renderGridCrosses() {
-            const grid = document.getElementById('emojiGrid');
-            const computedStyle = window.getComputedStyle(grid);
-            const columns = computedStyle.gridTemplateColumns.split(' ').length;
-            const emojiItems = grid.querySelectorAll('.emoji-item');
-            const rows = Math.ceil(emojiItems.length / columns);
-
-            const padding = 40;
-            const emojiSize = 40;
-            const gap = 32;
-
-            // 横方向の十字（絵文字の間）
-            for (let row = 0; row < rows; row++) {
-                for (let col = 0; col < columns - 1; col++) {
-                    const cross = createCrossSVG();
-                    const x = padding + (col + 1) * emojiSize + col * gap + gap / 2 - 6;
-                    const y = padding + row * emojiSize + row * gap + emojiSize / 2 - 6;
-                    cross.style.left = `${x}px`;
-                    cross.style.top = `${y}px`;
-                    grid.appendChild(cross);
-                }
-            }
-
-            // 縦方向の十字（絵文字の間）
-            for (let row = 0; row < rows - 1; row++) {
-                for (let col = 0; col < columns; col++) {
-                    const cross = createCrossSVG();
-                    const x = padding + col * emojiSize + col * gap + emojiSize / 2 - 6;
-                    const y = padding + (row + 1) * emojiSize + row * gap + gap / 2 - 6;
-                    cross.style.left = `${x}px`;
-                    cross.style.top = `${y}px`;
-                    grid.appendChild(cross);
-                }
-            }
-
-            // 交差点の十字
-            for (let row = 0; row < rows - 1; row++) {
-                for (let col = 0; col < columns - 1; col++) {
-                    const cross = createCrossSVG();
-                    const x = padding + (col + 1) * emojiSize + col * gap + gap / 2 - 6;
-                    const y = padding + (row + 1) * emojiSize + row * gap + gap / 2 - 6;
-                    cross.style.left = `${x}px`;
-                    cross.style.top = `${y}px`;
-                    grid.appendChild(cross);
-                }
-            }
-        }
-
-        // SVG十字アイコンを作成
-        function createCrossSVG() {
-            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-            svg.setAttribute('class', 'grid-cross');
-            svg.setAttribute('viewBox', '0 0 12 12');
-            svg.setAttribute('width', '12');
-            svg.setAttribute('height', '12');
-
-            const line1 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-            line1.setAttribute('x1', '6');
-            line1.setAttribute('y1', '0');
-            line1.setAttribute('x2', '6');
-            line1.setAttribute('y2', '12');
-            line1.setAttribute('stroke', '#E0E6E7');
-            line1.setAttribute('stroke-width', '1');
-
-            const line2 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-            line2.setAttribute('x1', '0');
-            line2.setAttribute('y1', '6');
-            line2.setAttribute('x2', '12');
-            line2.setAttribute('y2', '6');
-            line2.setAttribute('stroke', '#E0E6E7');
-            line2.setAttribute('stroke-width', '1');
-
-            svg.appendChild(line1);
-            svg.appendChild(line2);
-
-            return svg;
-        }
-
         // クリップボードにコピー
         async function copyToClipboard(text) {
             try {
@@ -303,10 +216,6 @@
         // ページ読み込み時に絵文字グリッドを描画
         document.addEventListener('DOMContentLoaded', () => {
             renderEmojiGrid();
-            // グリッドのレイアウトが確定してから十字を描画
-            setTimeout(() => {
-                renderGridCrosses();
-            }, 0);
         });
     </script>
 </body>
